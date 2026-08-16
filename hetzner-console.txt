@@ -1,0 +1,93 @@
+GETTING TO THE CONSOLE ON YOUR HETZNER SERVER
+=============================================
+
+You're on the right screen already. From that Dashboard:
+
+
+STEP 1 - OPEN THE SERVER
+------------------------
+In the grey menu down the left, under CLOUD, click "Servers".
+You'll see one server listed, called ubuntu-4gb-nbg1-2.
+Click it.
+
+
+STEP 2 - OPEN THE CONSOLE
+-------------------------
+On the server's page, look at the TOP RIGHT. There's a small button showing
+a "greater than" sign followed by an underscore. That's the console button.
+
+Click it. A black terminal window opens in a new tab.
+
+
+IGNORE THIS BUTTON
+------------------
+On the Dashboard you'll have spotted a button saying "Add SSH Key". It looks
+like exactly what we want. It isn't - please don't use it.
+
+That button adds a key to your project's key list, which Hetzner only uses when
+you BUILD a new server. It has no effect on a server that already exists. You'd
+click it, it would look like it worked, and nothing would change on the actual
+machine. That's why we have to go in through the console instead.
+
+
+STEP 3 - LOG IN AS root
+-----------------------
+The black window will show a line ending in "login:".
+
+Type:   root
+Press Enter.
+
+It will then ask for a Password. Type the server's root password. Nothing
+appears on screen as you type - no dots, no stars. That's normal, it is going
+in. Press Enter.
+
+IF YOU DON'T HAVE A ROOT PASSWORD
+Quite likely, if the server was built using an SSH key. In that case:
+
+  - Go back to the server's page
+  - Find "Reset root password" (under the actions menu, the three dots)
+  - Hetzner generates one and shows it to you ONCE - write it down there and then
+  - Then go back into the console and log in with it
+
+One thing to be aware of before you click that: depending on the server, Hetzner
+may need to power it off and on for the new password to take. That would take
+all three websites offline for a minute or two. It'll warn you if so. Nothing
+will break, but pick a quiet moment rather than doing it mid-morning.
+
+
+STEP 4 - GET THE COMMAND IN
+---------------------------
+Pasting into a browser console can be awkward. Try, in this order:
+
+  1. Ctrl and Shift and V together
+  2. Right-click inside the black window
+  3. Ctrl and V
+
+If one of those works, paste this (it's one line):
+
+mkdir -p /root/.ssh && echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKnuYUvAE3vHAllNuQkji/LpI0GoZINbOVNYyYeCJMGc farmsites-deploy-2" >> /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authorized_keys && echo DONE
+
+
+IF PASTING WON'T WORK AND YOU HAVE TO TYPE IT
+Don't type the one above - that long code is case-sensitive and full of
+characters that are easy to misread, like capital I against lowercase l.
+
+Type this shorter one instead. It does the same job by fetching the key itself,
+and it's all ordinary words:
+
+mkdir -p /root/.ssh && curl -fsSL https://raw.githubusercontent.com/anirudhatalmale6-alt/ftd-key/main/k.pub >> /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authorized_keys && echo DONE
+
+Either way, press Enter at the end.
+
+
+WHAT SUCCESS LOOKS LIKE
+-----------------------
+It prints DONE on its own line. That's it.
+
+If it prints anything else, take a photo of the screen and send it over - don't
+try to fix it yourself, some of those messages look alarming and mean nothing.
+
+
+THEN
+----
+Tell me it's done and I'll take it from there.
