@@ -1,0 +1,69 @@
+DMARC RECORDS - name.com
+========================
+
+Copy the values from this page, not from the Freelancer chat window. Chat turns
+certain character pairs into emoji, which is what broke the first attempt.
+
+
+1. MEADOWANDMOOR.CO.UK - ALREADY ADDED, NEEDS ONE SMALL CORRECTION
+-----------------------------------------------------------------
+You've got this in already and the start of it is spot on. The only thing wrong
+is the address at the end - it currently sends the reports to the
+FarmTradeDirect mailbox instead of the Meadow & Moor one.
+
+You don't need to retype the whole thing. Click Edit on that record, and in the
+Answer box change just the part after the @ symbol, so that:
+
+   contact@farmtradedirect.com
+
+becomes:
+
+   contact@meadowandmoor.co.uk
+
+Leave everything else exactly as it is. Save.
+
+Why it matters rather than being fussiness: a domain can only send its reports
+to a different domain's mailbox if that other domain publishes a record giving
+permission. Without it the reports get refused and quietly go nowhere. Pointing
+each domain at its own mailbox avoids the whole problem.
+
+The finished record should read:
+
+v=DMARC1; p=none; rua=mailto:contact@meadowandmoor.co.uk
+
+
+2. FARMTRADEDIRECT.COM - STILL TO ADD
+-------------------------------------
+Type   : TXT
+Host   : _dmarc
+TTL    : 300
+Answer :
+
+v=DMARC1; p=none; rua=mailto:contact@farmtradedirect.com
+
+
+3. FARMSTOCKNUTRITION.COM - STILL TO ADD
+----------------------------------------
+Type   : TXT
+Host   : _dmarc
+TTL    : 300
+Answer :
+
+v=DMARC1; p=none; rua=mailto:contact@farmstocknutrition.com
+
+
+NOTES
+-----
+The Host field is just _dmarc on its own. name.com adds the domain after it for
+you - that's the greyed out text under the box.
+
+Leave the Priority field alone, it doesn't apply to TXT records.
+
+Do not edit or delete any record that's already there. Only add new ones, and
+the one edit described above.
+
+"p=none" means monitor only - it reports problems without blocking any mail.
+That's deliberate. Once the sites have been sending live for a few weeks and
+nothing legitimate is failing, we can tighten it.
+
+Tell me when they're in and I'll check all three from outside.
