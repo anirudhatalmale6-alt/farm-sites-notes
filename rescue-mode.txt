@@ -1,0 +1,79 @@
+GETTING ME BACK ON THE SERVER - THE RESCUE ROUTE
+================================================
+
+Why this route: everything so far has failed inside your browser - the console
+says disconnected, and now the Rescue page has thrown "a connection problem has
+occurred" as well. Rescue mode moves the job off your browser and onto my end.
+The server itself answers me fine, it just doesn't recognise my key yet.
+
+You click one button and send me one password. I do the rest.
+
+
+BEFORE YOU START - TIMING
+-------------------------
+This takes all three websites offline for roughly five minutes. Nothing is lost
+and nothing is at risk - the server comes back exactly as it was, with my key
+added. But it is mid-morning, so if you'd rather do it at lunchtime or this
+evening, say so and I'll wait. It only needs five minutes of your attention.
+
+
+STEP 1
+------
+You're already on the right page - the Rescue tab of the server.
+
+Click: Enable rescue and power cycle
+
+(the second, wider red button)
+
+
+STEP 2
+------
+Hetzner will show you a root password for the rescue system. It shows it ONCE.
+
+Take a screenshot of it the same way you did the last one and send it over.
+Screenshots are safer than typing it out - the chat window sometimes alters
+certain character pairs.
+
+
+STEP 3
+------
+Nothing. I'll take it from there. I will:
+
+  - log into the rescue system
+  - mount the server's disk
+  - add my key to the right file
+  - reboot the server back onto its own disk
+  - confirm all three sites are answering again
+
+Then I'll message you the moment it's back up, and get straight on with the
+backlog that's been waiting.
+
+
+THE ALTERNATIVE, IF YOU'D RATHER NOT HAVE ANY DOWNTIME
+------------------------------------------------------
+Hetzner can issue an API token for the project. With one of those I can do the
+whole thing myself, including picking a quiet moment, and you wouldn't need to
+be involved at all.
+
+Being straight with you about what it is: a read-write token is full control of
+that server for as long as it exists - including the ability to delete it. I'd
+only be using it to enable rescue, restart, and turn rescue back off, and you
+can revoke it in the console the second I tell you I'm done, which I'd suggest
+you do.
+
+It's Security in the left-hand menu, then API tokens, then Generate API token,
+Read and Write. If you're not comfortable with that, no problem at all - the
+rescue route above gets us to exactly the same place.
+
+
+ONE THING WORTH KNOWING ABOUT THE PASSWORD YOU JUST SENT
+--------------------------------------------------------
+It isn't wasted, but it won't let me in over SSH. Ubuntu servers built from an
+SSH key are set up to refuse root password logins over the network - the setting
+is called "prohibit-password". That password is for the console window only.
+
+Two other things about it. The Reset Root Password screen warns it fails if the
+qemu-guest-agent has been removed from the server, and your screen showed a
+connection error at the same time, so it may not have applied at all. And it's
+now sitting in our chat history, so change it once we're sorted - Actions,
+Reset root password, and just keep the new one to yourself.
